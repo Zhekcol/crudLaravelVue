@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\AsignaturasController;
+use App\Http\Controllers\EstudiantesController;
+use App\Http\Controllers\ProfesoresController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +21,8 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    $response = Http::get('http://127.0.0.1:8000/api/estudiantes');
+    dd($response);
 });
 
 Route::get('/dashboard', function () {
@@ -33,6 +33,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('estudiantes', EstudiantesController::class)->names('estudiantes');
+    Route::resource('profesores', ProfesoresController::class);
+    Route::resource('asignaturas', AsignaturasController::class);
+    Route::get('graphic', EstudiantesController::class);
+    Route::get('reports', EstudiantesController::class);
 });
 
 require __DIR__.'/auth.php';
