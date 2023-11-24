@@ -33,6 +33,31 @@ const showingNavigationDropdown = ref(false);
                                     Dashboard
                                 </NavLink>
                             </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('estudiantes.index')" :active="route().current('estudiantes.index')">
+                                    Estudiantes
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('profesores.index')" :active="route().current('profesores.index')">
+                                    Profesores
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('asignaturas.index')" :active="route().current('asignaturas.index')">
+                                    Asignaturas
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('graphica')" :active="route().current('graphica')">
+                                    Grafica
+                                </NavLink>
+                            </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink :href="route('reportes')" :active="route().current('reportes')">
+                                    Reportes
+                                </NavLink>
+                            </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -114,6 +139,21 @@ const showingNavigationDropdown = ref(false);
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('estudiantes.index')" :active="route().current('estudiantes.index')">
+                            Estudiantes
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('profesores.index')" :active="route().current('profesores.index')">
+                            Profesores
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('asignaturas.index')" :active="route().current('asignaturas.index')">
+                            Asignaturas
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('graphica')" :active="route().current('graphica')">
+                            Grafica
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('reportes')" :active="route().current('reportes')">
+                            Reportes
                         </ResponsiveNavLink>
                     </div>
 

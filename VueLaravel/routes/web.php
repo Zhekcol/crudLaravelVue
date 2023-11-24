@@ -21,8 +21,12 @@ use Illuminate\Support\Facades\Http;
 */
 
 Route::get('/', function () {
-    $response = Http::get('http://127.0.0.1:8000/api/estudiantes');
-    dd($response);
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
 Route::get('/dashboard', function () {
@@ -36,8 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('estudiantes', EstudiantesController::class)->names('estudiantes');
     Route::resource('profesores', ProfesoresController::class);
     Route::resource('asignaturas', AsignaturasController::class);
-    Route::get('graphic', EstudiantesController::class);
-    Route::get('reports', EstudiantesController::class);
+    Route::get('graphic', [EstudiantesController::class, 'graphica'])->name('graphica');
+    Route::get('reports', [EstudiantesController::class, 'reportes'])->name('reportes');
 });
 
 require __DIR__.'/auth.php';
